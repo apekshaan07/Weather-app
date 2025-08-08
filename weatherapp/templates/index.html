@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body
+  {% if exception_occurred %}
+    style="background-image:url('https://images.pexels.com/photos/3008509/pexels-photo-3008509.jpeg?auto=compress&cs=tinysrgb&w=1600');"
+  {% else %}
+    style="background-image:url('{{ image_url|default:'' }}');"
+  {% endif %}
+>
+  <!-- OUTER GLASS PANEL -->
+  <div class="container">
+    <h1>Weather App</h1>
+
+    <form method="POST">
+      {% csrf_token %}
+      <input type="text" name="city" placeholder="Enter city name" />
+      <button type="submit" class="btn">Get Weather</button>
+    </form>
+
+    <!-- INNER CARD -->
+    <div class="container card">
+      <div class="left">
+        <div class="temp-pill">
+          <div class="temp"><span data-temp data-c="{{ temp }}" data-unit="C">{{ temp }}</span>° C</div>
+          <div class="city">{{ city|upper }}</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <img class="wx-icon" src="http://openweathermap.org/img/w/{{ icon }}.png" width="120" alt="weather icon">
+        <div class="summary">
+          <div class="desc">{{ description|title }}</div>
+          <div class="date">{{ day }}</div>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><span>Local Time</span><strong>{{ local_time }}</strong></div>
+          <div class="stat"><span>Sunrise</span><strong>{{ sunrise }}</strong></div>
+          <div class="stat"><span>Sunset</span><strong>{{ sunset }}</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if exception_occurred %}
+  <script>
+    window.addEventListener('load', () => {
+      alert("City information is not available");
+    });
+  </script>
+  {% endif %}
+</body>
+</html>
