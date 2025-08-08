@@ -9,4 +9,4 @@ A simple Django application that shows the current weather for any city using th
 ![Weather App - Success](Imagessuccess2.png)
 
 ### Error State (City Not Found)
-![Weather App - Error](Images/error.png)
+![Weather App - Error](Images/Error.png)
