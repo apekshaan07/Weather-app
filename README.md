@@ -6,7 +6,7 @@ A simple Django application that shows the current weather for any city using th
 
 ### Main Weather UI
 ![Weather App - Success](Images/success1.png)
-![Weather App - Success](Images/success2.png)
+![Weather App - Success](Images/succes2.png)
 
 ### Error State (City Not Found)
 ![Weather App - Error](Images/Error.png)
